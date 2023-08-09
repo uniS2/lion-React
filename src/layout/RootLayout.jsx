@@ -8,6 +8,7 @@ function RootLayout(props){
       <HeaderBar />
       <main>
         {props.children}
+        
       </main>
       <FooterBar />
     </div>

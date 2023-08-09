@@ -6,9 +6,9 @@ function Home() {
     <h2>홈페이지</h2>
 
     <Logo />
-    <Logo color="blue" size={12} />
-    <Logo color="sky" />
-    <Logo color="blue" size={108} />
+    <Logo color="yellowgreen" size={25} />
+    <Logo color="cornflowerblue" />
+    <Logo color="pink" size={108} />
   </div>
   )
 }
