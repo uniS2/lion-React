@@ -1,0 +1,35 @@
+:root {
+  font-size: 10px;
+  background-color: #e4e5ed;
+  overflow-y: scroll;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font: 1.6rem / 1.5;
+  
+  /* CSS 중첩 규칙(Nesting Rules) */
+  /* Sass 유사. body 안에 있는 하위 모든 자식들 */
+  & * {
+    box-sizing: inherit;
+  }
+}
+
+img {
+  /* 하단 공백 제거 */
+  vertical-align: middle; 
+}
+
+
+
+button {
+  cursor: pointer;
+  font-size: 1.6rem; /* 16px */
+
+}
+
+abbr[title] {
+  cursor: help;
+  text-decoration: none;
+}
