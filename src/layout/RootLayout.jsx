@@ -5,11 +5,12 @@ import FooterBar from './FooterBar';
 function RootLayout(props) {
   return (
     <>
-      <HeaderBar />, 
-      <main >{props.children}</main>, 
+      {/* <div className="overlay"></div> */}
+      <HeaderBar />
+      <main>{props.children}</main>
       <FooterBar />
     </>
-  )
+  );
 
   // return [
   //   <HeaderBar key="header-bar" />, 
