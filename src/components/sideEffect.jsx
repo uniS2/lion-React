@@ -16,12 +16,16 @@ function SideEffect() {
   // effect callback
   // userEggect hook
 
-  React.useEffect(() => {
-    // impure
-    console.log('effect callback')
-    const effectElement = document.querySelector('.SideEffect');
-    effectElement?.setAttribute('lang', 'en');
-  });
+  React.useEffect(
+    /* setup */
+    () => {
+      // impure
+      console.log('effect callback')
+      const effectElement = document.querySelector('.SideEffect');
+      effectElement?.setAttribute('lang', 'en');
+    },
+    /* dependencies? */
+  );
 
   /* 
     // Virtual DOM => Virtual Element Tree (React Element Tree)

@@ -1,12 +1,14 @@
 import styles from '@/styles/FilterableList.module.css';
-import SideEffect from '@/components/SideEffect';
+// import SideEffect from '@/components/SideEffect';
+import Switcher from '@/components/Switcher';
 
 console.log(styles)
 
 function FilterableList() {
   return (
     <>
-    <SideEffect />
+    <Switcher>on</Switcher>
+    <Switcher>off</Switcher>
       <form>
         <div>
           <label htmlFor="todo"></label>
