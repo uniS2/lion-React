@@ -1,7 +1,7 @@
 import RootLayout from './layout/RootLayout';
 // import FilterableList from './pages/Practice/FilterableList';
 // import Practice from './pages/Practice/Practice';
-import Demo from './pages/Demo';
+import DemoPage from './pages/Demo';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <RootLayout>
         {/* <Practice /> */}
         {/* <FilterableList /> */}
-        <Demo />
+        <DemoPage />
       </RootLayout>
     </div>
   );
