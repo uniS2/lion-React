@@ -47,3 +47,23 @@ abbr[title] {
   z-index: 1000;
   background: #0007;
 }
+
+.primary {
+  padding: 20px;
+}
+
+.secondary {
+  padding: 10px;
+}
+
+.accnet {
+  padding-inline: 12px;
+  color:red;
+}
+
+
+/* .container {
+  padding: 20px;
+  background: rgba(42, 74, 217, 0.6);
+  color:#fff;
+} */

@@ -15,7 +15,7 @@ function DefinitionList() {
     return (!reverse ? statusMessage : statusMessage.toReversed().map(renderListItem))
   };
 
-  const allHidden = true;
+  const allHidden = false;
 
   return (
     <dl className="descriptionList">
