@@ -1,10 +1,12 @@
 import styles from '@/styles/FilterableList.module.css';
+import SideEffect from '@/components/SideEffect';
 
 console.log(styles)
 
 function FilterableList() {
   return (
     <>
+    <SideEffect />
       <form>
         <div>
           <label htmlFor="todo"></label>
