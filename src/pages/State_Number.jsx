@@ -37,12 +37,12 @@ function LearnStateAndEffects() {
               setStep(nextStep);
             }}
 
-            className="w-12 py-1 px-2 border-slate-300 border rounded-xl"
+            className="w-[60px] py-1 px-2 border-slate-300 border rounded-xl"
           />
           <input
             type="number"
             defaultValue={12}
-            className="w-12 py-1 px-2 border-slate-300 border rounded-full"
+            className="w-[60px] py-1 px-2 border-slate-300 border rounded-full"
           />
         </div>
         <button
