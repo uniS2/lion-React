@@ -1,13 +1,14 @@
-import React from 'react';
+// import './styles/global.css';
+import './styles/tailwind.css';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './styles/global.css';
 
 // ReactDOMRoot { render, unmount }
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <StrictMode>
     <App /> {/* Virtual DOM (React Element Tree : React Created) */}
-  </React.StrictMode>
+  </StrictMode>
 );
 
 // rendering → mount (DOM)
