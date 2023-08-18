@@ -1,16 +1,7 @@
-import Logo from "../components/logo";
-
-function Home() {
-  return (
+const Home = () => (
   <div>
-    <h2>홈페이지</h2>
-
-    <Logo />
-    <Logo color="yellowgreen" size={25} />
-    <Logo color="cornflowerblue" />
-    <Logo color="pink" size={108} />
+    <h1 className='text-emerald-500'>Home</h1>
   </div>
-  )
-}
+);
 
 export default Home;
