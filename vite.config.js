@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'node:path'  // Node.js 런타임이 기본 제공하는 모듈 (파일 경로). from path 사용가능
+import { env } from 'node:process';
 
 // 개발 환경인지 여부를 나타내는 불리언 값
 const isDev = env.NODE_ENV === 'development';
