@@ -1,48 +1,69 @@
+// 데이터 가져오기 (PocketBase 서버: 백엔드 데이터베이스 솔루션)
 import Spinner from "@/components/Spinner";
 import { useEffect, useState } from "react";
 
+// 1. 컴포넌트에서 관리할 상태(데이터, 상황: 대기, 로딩, 성공, 실패) 정의
+// 2. 서버에 데이터 가져오기 요청/응답
+// 3. 응답된 상황(status)에 따라 뷰(view) 전환 : 조건부 렌더링
+// 3-1. 로딩 상황의 화면
+// 3-2. 오류 상황의 화면
+// 3-3. 성공 상황의 화면: 데이터 기반으로 리스트 렌더링
 
 function LearnStateAndEffects() {
-
-  // 1. data
-  const [data, setData] = useState([]);
-  // 2. isLoading
-  const [isLoading, setIsLoading] = useState(false);
-  // 3. error
+  const [data, setData] = useState(null);
+  const [status, setStatus] = useState('pending');
   const [error, setError] = useState(null);
-  
-  // side effect
-  // request data
+
+  // 이펙트가 필요해!!!
+  // React 외적인 일을 처리
   useEffect(() => {
+    const controller = new AbortController();
+    const {signal} = controller;
 
-    setIsLoading(true);
+    setStatus('loading');
 
-    // async await
-    async function fetchTodo() {
-      // fetch
-      const response = await fetch('http://127.0.0.1"8090/api/collections/todo/records',
-      )
-    
-      // error?
-      if (!response.ok) {
-        console.log(error);
+    /* 
+    {
+      method: 'GET',
+      headers: {
+        'Content-type': ''
       }
-
-      const data = await response.json();
-      
-      setData(data);
-      setIsLoading(false);
     }
+     */
 
+    // fetch + promise, async function + fetch
+    fetch('http://127.0.0.1:8090/api/collections/products/records', {signal})
+      .then(response => response.json())
+      .then(responseData => {
+        setData(responseData);
+        setStatus('success');
+      })
+      .catch(error => {
+        setStatus('error');
+        setError(error);
+      })
 
-    fetchTodo();
-  }, [])
+      return () => {
+        controller.abort();
+      }
+  }, []);
 
-  if (isLoading) {
+  // 함수 몸체: 문 또는 식, 함수
+
+  // 상활 별 조건 처리(화면 표시 모드)
+
+  // 로딩중인 경우 화면면
+  if(status === 'loading') {
+    return <Spinner size={100} title="데이터 가져오는 중이에요." />
+  }
+
+  // 오류가 발생한 경우 화면
+  if(status === 'error'){
     return (
-        <Spinner
-        size={120}
-        className="absolute z-[10000] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      <div role="alert">
+        <h2>{error.type}</h2>
+        <p>{error.message}</p>
+      </div>
     )
   }
 
@@ -52,13 +73,19 @@ function LearnStateAndEffects() {
         상태 및 이펙트 학습하기
       </h2>
       {
-        data && data.itmes?.map(item => (
-          <div key={item.id} className="todo">
-            <strong>{item.doit}</strong>
-          </div>
-        ))
+        data && (
+          <ul>
+            {data.items?.map((item) => (  // 객체
+              <li key={item.id}>
+                <label>
+                <input type="checkbox" checked={item.done} readOnly /> {item.title}
+              </label>
+                </li>
+            ))}
+          </ul>
+        )
       }
-
+     
     </div>
   );
 }
