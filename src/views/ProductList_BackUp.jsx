@@ -1,9 +1,9 @@
-import Spinner from '@/components/Spinner';
-import { getPbImageURL, numberWithComma } from '@/utils';
-import { useEffect, useState } from 'react';
+import Spinner from "@/components/Spinner";
+import { getPbImageURL, numberWithComma } from "@/utils";
+import { useEffect, useState } from "react";
 
 const PB_PRODUCTS_ENDPOINT = `
-  http://127.0.0.1:8090/api/collections/products/records
+  ${import.meta.env.VITE_PB_URL}/api/collections/products/records
   `;
 
 function ProductList() {
@@ -21,12 +21,12 @@ function ProductList() {
       try {
         const response = await fetch(PB_PRODUCTS_ENDPOINT, {
           signal: controller.signal,
-        })
+        });
         const responseData = await response.json();
         setData(responseData);
       } catch (error) {
         // 통신 중단에 따른 오류가 아니라면 오류 설정
-        if (!(error instanceof DOMException)){
+        if (!(error instanceof DOMException)) {
           setError(error);
         }
       } finally {
@@ -40,7 +40,7 @@ function ProductList() {
     // mount(1, 요청 1) -> unmount(취소 1) -> mount(2, 요청 2)
     return () => {
       controller.abort();
-    }
+    };
   }, []);
 
   // 로딩 중인 경우 화면
@@ -67,12 +67,16 @@ function ProductList() {
     </ul>
   );
 }
-function ProductItem({ item}) {
+function ProductItem({ item }) {
   return (
     <li>
       <figure className="flex flex-col items-start">
         {/* http://127.0.0.1:8090/api/files/COLLECTION_ID_OR_NAME/RECORD_ID/FILENAME */}
-        <img src={getPbImageURL(item, 'photo')} className="h-96 w-auto" alt="" />
+        <img
+          src={getPbImageURL(item, "photo")}
+          className="h-96 w-auto"
+          alt=""
+        />
         <figcaption className="flex flex-col">
           <span className="title">
             {item.title} [ {item.color} ]
@@ -81,7 +85,7 @@ function ProductItem({ item}) {
         </figcaption>
       </figure>
     </li>
-  )
+  );
 }
 
-export default ProductList
+export default ProductList;

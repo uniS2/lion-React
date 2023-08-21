@@ -1,17 +1,17 @@
-import Spinner from '@/components/Spinner';
-import useFetchData from '@/hooks/useFetchData';
-import ProductItem from './ProductItem';
-import useMouse from '@/hooks/useMouse';
+import Spinner from "@/components/Spinner";
+import useFetchData from "@/hooks/useFetchData";
+import ProductItem from "./ProductItem";
+import useMouse from "@/hooks/useMouse";
 
 const PB_PRODUCTS_ENDPOINT = `
-  http://127.0.0.1:8090/api/collections/products/records
+  ${import.meta.env.VITE_PB_API}/collections/products/records
   `;
 
 function ProductList() {
   const { data, isLoading, error } = useFetchData(PB_PRODUCTS_ENDPOINT);
   const { x, y } = useMouse();
 
-  console.log({x, y});
+  console.log({ x, y });
 
   // 로딩 중인 경우 화면
   if (isLoading) {
@@ -32,9 +32,10 @@ function ProductList() {
     <ul className="grid grid-cols-3 m-10">
       {/* javasciprt expression */}
       {data &&
-        data.items && data.items?.map((item) => <ProductItem key={item.id} item={item} />)}
+        data.items &&
+        data.items?.map((item) => <ProductItem key={item.id} item={item} />)}
     </ul>
   );
 }
 
-export default ProductList
+export default ProductList;

@@ -11,16 +11,16 @@ import { useEffect, useState } from "react";
 
 function LearnStateAndEffects() {
   const [data, setData] = useState(null);
-  const [status, setStatus] = useState('pending');
+  const [status, setStatus] = useState("pending");
   const [error, setError] = useState(null);
 
   // 이펙트가 필요해!!!
   // React 외적인 일을 처리
   useEffect(() => {
     const controller = new AbortController();
-    const {signal} = controller;
+    const { signal } = controller;
 
-    setStatus('loading');
+    setStatus("loading");
 
     /* 
     {
@@ -32,22 +32,22 @@ function LearnStateAndEffects() {
      */
 
     // fetch + promise, async function + fetch
-    fetch('http://127.0.0.1:8090/api/collections/products/records', {signal})
-      .then(response => response.json())
-      .then(responseData => {
+    fetch("http://127.0.0.1:8090/api/collections/products/records", { signal })
+      .then((response) => response.json())
+      .then((responseData) => {
         setData(responseData);
-        setStatus('success');
+        setStatus("success");
       })
-      .catch(error => {
-        if(!(error instanceof DOMException)){
-          setStatus('error');
+      .catch((error) => {
+        if (!(error instanceof DOMException)) {
+          setStatus("error");
           setError(error);
         }
-      })
+      });
 
-      return () => {
-        controller.abort();
-      }
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   // 함수 몸체: 문 또는 식, 함수
@@ -55,18 +55,18 @@ function LearnStateAndEffects() {
   // 상활 별 조건 처리(화면 표시 모드)
 
   // 로딩중인 경우 화면면
-  if(status === 'loading') {
-    return <Spinner size={100} title="데이터 가져오는 중이에요." />
+  if (status === "loading") {
+    return <Spinner size={100} title="데이터 가져오는 중이에요." />;
   }
 
   // 오류가 발생한 경우 화면
-  if(status === 'error'){
+  if (status === "error") {
     return (
       <div role="alert">
         <h2>{error.type}</h2>
         <p>{error.message}</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -74,20 +74,22 @@ function LearnStateAndEffects() {
       <h2 className={`text-indigo-600 font-suit text-2xl`}>
         상태 및 이펙트 학습하기
       </h2>
-      {
-        data && (
-          <ul>
-            {data.items?.map((item) => (  // 객체
+      {data && (
+        <ul>
+          {data.items?.map(
+            (
+              item // 객체
+            ) => (
               <li key={item.id}>
                 <label>
-                <input type="checkbox" checked={item.done} readOnly /> {item.title}
-              </label>
-                </li>
-            ))}
-          </ul>
-        )
-      }
-     
+                  <input type="checkbox" checked={item.done} readOnly />{" "}
+                  {item.title}
+                </label>
+              </li>
+            )
+          )}
+        </ul>
+      )}
     </div>
   );
 }
