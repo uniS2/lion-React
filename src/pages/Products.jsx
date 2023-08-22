@@ -20,6 +20,9 @@ function Products() {
   useDocumentTitle("제품 목록");
   const { isLoading, data } = useProductList();
 
+  // data [] -> null 속성 가질 수 없음
+  // data {..., items: [] } PB에서 전달된 객체
+
   if (isLoading) {
     return <Spinner size={160} />;
   }
