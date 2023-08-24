@@ -5,7 +5,10 @@ export default {
     extend: {
       fontFamily: {
         'suit': ['SUIT Variable']
-      }
+      },
+      backgroundImage: {
+        'hero': 'url("/hero.jpg")',
+      },
     },
   },
   plugins: [],
